@@ -19,7 +19,7 @@ export default function Story(){
         Now you need to start working on your country and your only goal is to survive if you fail you restart 
         </div>
         <div className="absolute text-white text-6xl bottom-3 right-3 jersey">
-            <a href="/storyline2">
+            <a href="/start">
             Next..
             </a>
         </div>
