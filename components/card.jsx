@@ -7,7 +7,7 @@ export default function Card({ img, text }) {
                 {img}
             </div>
             <div className="flex justify-center items-center p-10 text-white">
-                {text}
+               <span>+</span><span>{}</span><span>-</span>
             </div>
         </div>
     )
