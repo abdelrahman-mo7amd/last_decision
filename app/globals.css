@@ -357,3 +357,13 @@
   font-size: 15px;
   letter-spacing: 2px;
 }
+
+.docs:hover{
+  color:white;
+}
+
+.button:hover{
+  background-color:red;
+  color:black;
+  border: 2px solid black;
+}
