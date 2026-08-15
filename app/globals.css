@@ -59,3 +59,301 @@
   font-family: "Jersey 25";
   color:white;
 }
+
+
+/* ABDELRAHMAN: START  */
+/* Some variables for the map  */
+
+:root {
+  --dark-red: #b30000;
+  --night-sky: #0a0a16;
+  --window-glow: #ffd23f;
+  --building-purple: #4b2e83;
+  --building-navy: #1f3a5f;
+  --building-teal: #12665e;
+  --building-brown: #6b4226;
+}
+
+.game-container {
+  min-height: 100vh;
+  width: 100%;
+  background: red;
+  color:black;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.game-title {
+  color: black;
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.icon-row {
+  display: flex;
+  align-items: center;
+  gap : 15px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  color: black;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: white;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.game-map {
+  position: relative;
+  width: 600px;
+  max-width: 90vw;
+  height: 340px;
+  border: 4px solid black;
+  background-color: var(--night-sky);
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: white;
+}
+
+.star-1 {
+  top: 20px;
+  left: 30px;
+}
+.star-2 {
+  top: 45px;
+  left: 90px;
+}
+.star-3 {
+  top: 15px;
+  left: 250px;
+}
+.star-4 {
+  top: 60px;
+  left: 340px;
+}
+.star-5 {
+  top: 30px;
+  left: 420px;
+}
+
+.moon {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #f2f0d8;
+}
+
+.building {
+  position: absolute;
+  bottom: 25px;
+}
+
+
+.window {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--window-glow);
+}
+
+
+.building-1 {
+  left: 30px;
+  width: 70px;
+  height: 120px;
+  background-color: var(--building-navy);
+}
+
+.building-2 {
+  left: 115px;
+  width: 50px;
+  height: 190px;
+  background-color: var(--building-purple);
+}
+.building-3 {
+  right: 90px;
+  width: 60px;
+  height: 150px;
+  background-color: var(--building-teal);
+}
+
+.building-4 {
+  right: 20px;
+  width: 55px;
+  height: 95px;
+  background-color: var(--building-brown);
+}
+
+
+.window-1a {
+  top: 15px;
+  left: 12px;
+}
+.window-1b {
+  top: 15px;
+  left: 35px;
+}
+.window-1c {
+  top: 40px;
+  left: 12px;
+}
+
+
+.window-2a {
+  top: 17px;
+  left: 10px;
+}
+.window-2b {
+  top: 17px;
+  left: 30px;
+}
+.window-2c {
+  top: 40px;
+  left: 10px;
+}
+.window-2d {
+  top: 65px;
+  left: 30px;
+}
+
+.window-3a { 
+  top: 15px; 
+  left: 12px; 
+}
+
+.window-3b { 
+  top: 40px; 
+  left: 35px; 
+}
+
+
+.window-4a { 
+  top: 15px; 
+  left: 10px; 
+}
+.window-4b { 
+  top: 15px; 
+  left: 32px; 
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #1a1a1a;
+  border-top: 2px solid black;
+}
+
+.character {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.character-head {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid red;
+  background-color: black;
+  margin-bottom: 2px;
+}
+
+.character-body {
+  width: 30px;
+  height: 40px;
+  border: 2px solid red;
+  background-color: black;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+}
+
+.character-name {
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: black;
+}
+
+.inspect-button {
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+  padding: 10px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inspect-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.character-info {
+  border: 3px solid black;
+  background-color: black;
+  color: white;
+  padding: 20px 25px;
+  width: 320px;
+  max-width: 90vw;
+  text-align: left;
+}
+
+.character-info h2{ 
+  color: white;
+  font-size: 20px;
+  margin: 0 0 10px 0;
+}
+
+.character-info p {
+  font-size: 15px;
+  margin: 5px 0;
+  letter-spacing: 1px;
+}
+
+.recommendation-value {
+  color: red;
+  font-weight: bold;
+}
+
+.fotter {
+  text-align: center;
+  color: black;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
