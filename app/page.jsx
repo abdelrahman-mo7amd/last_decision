@@ -7,7 +7,7 @@ export default function Home() {
       let body = document.getElementById("body")
       body.innerHTML = `
       <div>
-    <a href = "/start" class="hello">Start</a>
+    <a href = "/storyline" class="hello">Start</a>
    </div>
       `
     }, 3000);
