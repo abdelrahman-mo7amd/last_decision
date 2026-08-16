@@ -480,3 +480,8 @@
   background-color: black;
   color: white;
 }
+
+.togray:hover{
+  color:gray;
+  transition:20s;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import GameMap from "@/components/GameMap";
 import Character from "@/components/Character";
@@ -17,6 +17,17 @@ export default function Decide() {
     const [decision, setDecision] = useState(null);
     const [score, setScore] = useState(0);
     const [lastScoreChange, setLastScoreChange]= useState(0);
+
+    // sync local score into global store so final page can read it
+    useEffect(() => {
+        try {
+            const { setRoundScore, setLastScoreChange: setGlobalLast } = require("@/lib/scoreStore");
+            setRoundScore(score);
+            setGlobalLast(lastScoreChange);
+        } catch (e) {
+            console.warn("Could not sync to global score store:", e);
+        }
+    }, [score, lastScoreChange]);
 
     const currentPerson = people[currentIndex];
     const isLastCase = currentIndex === people.length -1;
@@ -48,7 +59,13 @@ export default function Decide() {
         if (isLastCase) {
             const previous_score = Number(localStorage.getItem("ld_score")) || 0;
             localStorage.setItem("ld_score", String(previous_score + score));
-            router.push("/summary");
+            try {
+                const { setTotalScore } = require("@/lib/scoreStore");
+                setTotalScore(previous_score + score);
+            } catch (e) {
+                console.warn("Could not set global total score:", e);
+            }
+            router.push("/final");
             return;
         }
 

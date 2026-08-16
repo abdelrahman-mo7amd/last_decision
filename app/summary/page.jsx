@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import GameMap from "@/components/GameMap";
 import Character from "@/components/Character";
@@ -17,6 +17,17 @@ export default function Decide() {
   const [decision, setDecision] = useState(null);
   const [score, setScore] = useState(0);
   const [lastScoreChange, setLastScoreChange] = useState(0);
+
+
+  useEffect(() => {
+    try {
+      const { setRoundScore, setLastScoreChange: setGlobalLast, setTotalScore } = require("@/lib/scoreStore");
+      setRoundScore(score);
+      setGlobalLast(lastScoreChange);
+    } catch (e) {
+      console.warn("Could not sync to global score store:", e);
+    }
+  }, [score, lastScoreChange]);
 
   const currentPerson = people[currentIndex];
   const isLastCase = currentIndex === people.length - 1;
@@ -45,14 +56,24 @@ export default function Decide() {
   }
 
   function handleNext() {
-    if (isLastCase) {
+  if (isLastCase) {
+    try {
+      const { addToTotalScore } = require("@/lib/scoreStore");
 
-      const previousScore = Number(localStorage.getItem("ld_score")) || 0;
-      localStorage.setItem("ld_score", String(previousScore + score));
-      router.push("/summary");
-      return;
+      // Add this question round's score to the global score
+      addToTotalScore(score);
+    } catch (e) {
+      console.warn("Could not update global score:", e);
     }
 
+    router.push("/final");
+    return;
+  }
+
+  setCurrentIndex(currentIndex + 1);
+  setDecision(null);
+  setShowInfo(false);
+}
     setCurrentIndex(currentIndex + 1);
     setDecision(null);
     setShowInfo(false);
@@ -102,4 +123,4 @@ export default function Decide() {
       </div>
     </div>
   );
-}
+

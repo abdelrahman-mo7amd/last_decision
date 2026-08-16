@@ -3,6 +3,7 @@
 import Answer from "@/components/question";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { setRoundScore, addAnswer } from "@/lib/scoreStore";
 
 
 const questions = [
@@ -13,11 +14,27 @@ const questions = [
     "Is there something that u are secretly planning",
 ];
 
+
+const correctAnswers = [
+    "no",
+    "yes",
+    "any",
+    "no",
+    "any",
+];
+
 export default function Question(){
     const router = useRouter();
     const [remaining, setRemaining] = useState(() => [...questions]);
     const [current, setCurrent] = useState(null);
     const [answers, setAnswers] = useState([]);
+    const [score , setScore] = useState(0);
+
+
+    useEffect(() => {
+        // sync local round score into global store
+        try { setRoundScore(score); } catch (e) { console.warn(e); }
+    }, [score]);
 
     useEffect(() => {
         const idx = Math.floor(Math.random() * questions.length);
@@ -26,6 +43,18 @@ export default function Question(){
 
     function handleAnswer(answer) {
         setAnswers(prev => [...prev, { question: current, answer }]);
+
+        try {
+            const idx = questions.indexOf(current);
+            const correct = correctAnswers[idx];
+            const isCorrect = correct === "any" || answer === correct;
+            setScore(prev => prev + (isCorrect ? 15 : -5));
+        } catch (e) {
+            console.error("Scoring error:", e);
+        }
+
+        // also add this answer to the global store
+        try { addAnswer({ question: current, answer }); } catch (e) { console.warn(e); }
         const newRemaining = remaining.filter(q => q !== current);
         if (newRemaining.length === 0) {
             setCurrent(null);
