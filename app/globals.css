@@ -367,3 +367,116 @@
   color:black;
   border: 2px solid black;
 }
+
+/* --- DECIDE phase + SUMMARY (added for people.js / scoring) --- */
+
+.phase-score {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: black;
+}
+
+.phase-title {
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: black;
+  margin: 0;
+}
+
+.phase-subtitle {
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: black;
+  max-width: 500px;
+  margin: 0;
+}
+
+.case-counter {
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: black;
+}
+
+.start-button {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  padding: 14px 40px;
+  font-size: 22px;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.decision-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.accept-button,
+.reject-button {
+  border: 2px solid black;
+  background-color: black;
+  padding: 10px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.accept-button {
+  color: white;
+}
+
+.reject-button {
+  color: red;
+}
+
+.accept-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.reject-button:hover {
+  background-color: red;
+  color: black;
+  border-color: black;
+}
+
+.consequence-panel {
+  border: 3px solid black;
+  background-color: black;
+  color: white;
+  padding: 20px 25px;
+  width: 360px;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.consequence-text {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.score-change {
+  font-size: 20px;
+  color: red;
+  margin: 0 0 16px 0;
+}
+
+.next-button {
+  border: 2px solid white;
+  background-color: white;
+  color: black;
+  padding: 8px 24px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.next-button:hover {
+  background-color: black;
+  color: white;
+}
